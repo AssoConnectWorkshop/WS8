@@ -34,7 +34,7 @@ function StatusIcon({ ok }: { ok: boolean }) {
 
 export default async function Home() {
   const [db, api] = await Promise.all([testDatabase(), testApi()]);
-  const wsName = process.env.NEXT_PUBLIC_WS_NAME ?? "WS1";
+  const wsName = (await import("@/config/site")).siteConfig.name;
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center gap-10 p-8">
