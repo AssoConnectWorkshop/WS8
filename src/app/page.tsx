@@ -34,9 +34,13 @@ function StatusIcon({ ok }: { ok: boolean }) {
 
 export default async function Home() {
   const [db, api] = await Promise.all([testDatabase(), testApi()]);
+  const wsName = process.env.NEXT_PUBLIC_WS_NAME ?? "WS1";
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center gap-10 p-8">
+      <div className="absolute top-4 left-4 text-sm font-bold bg-black text-white px-3 py-1 rounded-full">
+        {wsName}
+      </div>
       <div className="flex flex-col items-center gap-4">
         <Image src="/mascot.png" alt="Mascot" width={160} height={160} priority />
         <h1 className="text-4xl font-bold">Welcome young padawan!</h1>
