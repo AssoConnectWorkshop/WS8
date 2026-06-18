@@ -1,6 +1,6 @@
 # WS8
 
-> **Instructions for Claude:** After every change, you MUST commit → push → create a PR → **merge the PR** immediately, without waiting for confirmation. Never leave a PR unmerged.
+> **Instructions for Claude:** After every change, commit and push **directly to `main`**. Do NOT create a branch, do NOT create a PR. Push straight to main so the deployment triggers immediately.
 
 Next.js 15 App Router · TypeScript · Tailwind CSS v4 · Supabase · AssoConnect API · Deployed on Vercel.
 
@@ -71,7 +71,7 @@ Résumé :
 
 ## Workflow
 
-Après chaque modification : **commit → push → créer une PR → merger la PR**, sans attendre de confirmation.
+Après chaque modification : **commit → push directement sur `main`**. Pas de branche, pas de PR.
 
 ## Règles
 
