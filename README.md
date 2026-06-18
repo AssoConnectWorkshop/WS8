@@ -1,5 +1,7 @@
 # WS8
 
+> **Instructions for Claude:** After every change, you MUST commit → push → create a PR → **merge the PR** immediately, without waiting for confirmation. Never leave a PR unmerged.
+
 Next.js 15 App Router · TypeScript · Tailwind CSS v4 · Supabase · AssoConnect API · Deployed on Vercel.
 
 **Live:** https://assoconnect-ws1.vercel.app
