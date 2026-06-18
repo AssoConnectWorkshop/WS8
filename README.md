@@ -6,75 +6,75 @@ Next.js 15 App Router · TypeScript · Tailwind CSS v4 · Supabase · AssoConnec
 
 **Live:** https://assoconnect-ws1.vercel.app
 
-## Prompt de démarrage
+## Getting started
 
-Donne ce prompt à Claude Code (claude.ai/code) pour commencer à coder :
+Give this prompt to Claude Code (claude.ai/code) to start building:
 
-> Lis le README du repo AssoConnectWorkshop/WS8 et aide-moi à construire [décris ton idée ici].
+> Read the README for the repo AssoConnectWorkshop/WS8 and help me build [describe your idea here].
 
 ## Stack
 
-| Élément | Détail |
+| | |
 |---|---|
-| Framework | Next.js 15 App Router — Server Components par défaut |
-| Style | Tailwind CSS v4 — `@import "tailwindcss"` dans `globals.css`, pas de `@apply` sans `@reference` |
-| Base de données | Supabase (`@supabase/ssr`) — client server : `src/lib/supabase/server.ts` |
-| API CRM | AssoConnect API — client server-only : `src/lib/assoconnect.ts` |
-| Config | Navigation et métadonnées dans `src/config/site.ts` |
-| Déploiement | Vercel — push sur `main` → production automatique |
+| Framework | Next.js 15 App Router — Server Components by default |
+| Styling | Tailwind CSS v4 — `@import "tailwindcss"` in `globals.css`, no `@apply` without `@reference` |
+| Database | Supabase (`@supabase/ssr`) — server client: `src/lib/supabase/server.ts` |
+| CRM API | AssoConnect API — server-only client: `src/lib/assoconnect.ts` |
+| Config | Navigation and metadata in `src/config/site.ts` |
+| Deploy | Vercel — push to `main` → production |
 
-## Ce qui est déjà en place
+## What's already set up
 
-- Table **`ws1_prenoms`** dans Supabase (quelques prénoms de test)
-- Client Supabase server-side prêt à l'emploi
-- Client AssoConnect API server-side prêt à l'emploi (scope CRM uniquement)
-- Page d'accueil avec vérification des connexions Supabase et AssoConnect
-- Migrations SQL automatiques au build via `scripts/migrate.mjs`
+- Table **`ws1_prenoms`** in Supabase (a few test entries)
+- Supabase server-side client ready to use
+- AssoConnect API server-only client ready to use (CRM scope only)
+- Home page with Supabase and AssoConnect connection checks
+- SQL migrations run automatically at build time via `scripts/migrate.mjs`
 
-## Ajouter une table
+## Adding a table
 
-Crée un fichier dans `supabase/migrations/` avec un timestamp horodaté :
+Create a file in `supabase/migrations/` with a timestamped name:
 
 ```sql
--- supabase/migrations/20260618120000_ma_table.sql
-create table ma_table (
+-- supabase/migrations/20260618120000_my_table.sql
+create table my_table (
   id bigint generated always as identity primary key,
-  nom text not null
+  name text not null
 );
 ```
 
-La migration sera appliquée automatiquement au prochain déploiement.
+The migration will be applied automatically on the next deployment.
 
-## Variables d'environnement
+## Environment variables
 
-Déjà configurées dans Vercel — ne pas committer de secrets.
+Already configured in Vercel — never commit secrets.
 
-| Variable | Usage |
+| Variable | Description |
 |---|---|
-| `NEXT_PUBLIC_SUPABASE_URL` | URL du projet Supabase |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Clé publique Supabase |
-| `SUPABASE_PROJECT_REF` | Référence projet (pour les migrations) |
-| `SUPABASE_ACCESS_TOKEN` | Token d'accès Supabase (migrations) |
-| `ASSOCONNECT_API_KEY` | Clé API AssoConnect (server-only) |
-| `ASSOCONNECT_ORGANIZATION_ULID` | ULID de l'organisation AssoConnect (server-only) |
+| `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase public anon key |
+| `SUPABASE_PROJECT_REF` | Project ref (used by migrations) |
+| `SUPABASE_ACCESS_TOKEN` | Supabase access token (migrations) |
+| `ASSOCONNECT_API_KEY` | AssoConnect API key (server-only) |
+| `ASSOCONNECT_ORGANIZATION_ULID` | AssoConnect organization ULID (server-only) |
 
-## API AssoConnect
+## AssoConnect API
 
-Voir [`docs/assoconnect-api.md`](docs/assoconnect-api.md) pour la référence complète.
+See [`docs/assoconnect-api.md`](docs/assoconnect-api.md) for the full reference.
 
-Résumé :
-- Base URL : `https://app.assoconnect.com/api/v1`
-- Auth : header `X-AUTH-TOKEN` (géré automatiquement par `src/lib/assoconnect.ts`)
-- Scope : CRM uniquement (contacts, adhérents, organisations)
-- Rate limit : 30 req/s
-- Les clés sont **server-only** — jamais de `NEXT_PUBLIC_` pour ces variables
+Summary:
+- Base URL: `https://app.assoconnect.com/api/v1`
+- Auth: `X-AUTH-TOKEN` header (handled automatically by `src/lib/assoconnect.ts`)
+- Scope: CRM only (contacts, members, organizations)
+- Rate limit: 30 req/s
+- Keys are **server-only** — never use `NEXT_PUBLIC_` for these variables
 
 ## Workflow
 
-Après chaque modification : **commit → push directement sur `main`**. Pas de branche, pas de PR.
+After every change: **commit and push directly to `main`**. No branches, no PRs.
 
-## Règles
+## Rules
 
-- `'use client'` seulement si la page a besoin d'interactivité (formulaires, hooks, événements)
-- Les secrets ne sont jamais exposés côté client
-- Pas de commentaires sauf si le "pourquoi" est non-obvious
+- Use `'use client'` only when the page needs interactivity (forms, hooks, events)
+- Secrets are never exposed client-side
+- No comments unless the "why" is non-obvious
