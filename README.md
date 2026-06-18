@@ -67,6 +67,10 @@ Résumé :
 - Rate limit : 30 req/s
 - Les clés sont **server-only** — jamais de `NEXT_PUBLIC_` pour ces variables
 
+## Workflow
+
+Après chaque modification : **commit → push → créer une PR → merger la PR**, sans attendre de confirmation.
+
 ## Règles
 
 - `'use client'` seulement si la page a besoin d'interactivité (formulaires, hooks, événements)
