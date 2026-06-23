@@ -46,6 +46,19 @@ export default async function Home() {
         <h1 className="text-4xl font-bold">Padawan La best team is ready</h1>
       </div>
 
+      <div className="flex flex-col items-center gap-3">
+        <p className="text-2xl font-semibold">👋 Bonjour, Aimée !</p>
+        <Image
+          src="https://cataas.com/cat/funny?width=300&height=300"
+          alt="A funny cat for Aimée"
+          width={300}
+          height={300}
+          className="rounded-2xl shadow-lg"
+          unoptimized
+        />
+        <p className="text-sm text-gray-500 italic">Spécialement pour toi 🐱</p>
+      </div>
+
       <div className="flex flex-col gap-6 w-full max-w-md">
         <div className="border rounded-xl p-6 flex flex-col gap-3">
           <div className="flex items-center gap-3">
